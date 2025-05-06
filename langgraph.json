@@ -2,7 +2,9 @@
   "dependencies": ["."],
   "graphs": {
     "web_search": "./src/zuzu_agent/agents/web_search/graph.py:graph",
-    "thread_title": "./src/zuzu_agent/agents/thread_title/graph.py:graph"
+    "thread_title": "./src/zuzu_agent/agents/thread_title/graph.py:graph",
+    "summarizer": "./src/zuzu_agent/agents/summarizer/graph.py:graph",
+    "reflection": "./src/zuzu_agent/agents/reflection/graph.py:graph"
   },
   "env": ".env"
 }
