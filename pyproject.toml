@@ -26,10 +26,17 @@ requires = ["setuptools>=73.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["agent", "web_search"]
+packages = [
+    "agent",
+    "web_search",
+    "thread_title",
+    "shared",
+]
 [tool.setuptools.package-dir]
 "agent" = "src/agent"
 "web_search" = "src/web_search"
+"thread_title" = "src/thread_title"
+"shared" = "src/shared"
 
 
 [tool.setuptools.package-data]

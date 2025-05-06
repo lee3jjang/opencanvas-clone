@@ -1,21 +1,12 @@
 from typing import Literal
 import datetime
+from web_search.prompts import CLASSIFIER_PROMPT, QUERY_GENERATOR_PROMPT
 from web_search.state import SearchResult, WebSearchState
 from pydantic import BaseModel, Field
 from langchain_anthropic.chat_models import ChatAnthropic
-from langchain_core.messages import BaseMessage
 from langchain_community.tools import DuckDuckGoSearchResults
 
-from web_search.utils import format_messages
-
-CLASSIFIER_PROMPT = """You're a helpful AI assistant tasked with classifying the user's latest message.
-The user has enabled web search for their conversation, however not all messages should be searched.
-
-Analyze their latest message in isolation and determine if it warrants a web search to include additional context.
-
-<message>
-{message}
-</message>"""
+from shared.utils import format_messages
 
 
 class ClassificationSchema(BaseModel):
@@ -35,28 +26,6 @@ async def classify_message(state: WebSearchState) -> dict:
     formatted_prompt = CLASSIFIER_PROMPT.format(message=latest_message_content)
     response: ClassificationSchema = await model.ainvoke([("user", formatted_prompt)])
     return {"should_search": response.should_search}
-
-
-QUERY_GENERATOR_PROMPT = """You're a helpful AI assistant tasked with writing a query to search the web.
-You're provided with a list of messages between a user and an AI assistant.
-The most recent message from the user is the one you should update to be a more search engine friendly query.
-
-Try to keep the new query as similar to the message as possible, while still being search engine friendly.
-
-Only answer result query.
-
-Here is the conversation between the user and the assistant, in order of oldest to newest:
-
-<conversation>
-{conversation}
-</conversation>
-
-<additional_context>
-{additional_context}
-</additional_context>
-
-generated query is:
->>> """
 
 
 async def query_generator(state: WebSearchState) -> dict:

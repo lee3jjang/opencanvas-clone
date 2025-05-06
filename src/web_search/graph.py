@@ -1,5 +1,3 @@
-from typing import Literal
-
 from langgraph.graph import StateGraph
 
 from web_search.nodes import (
