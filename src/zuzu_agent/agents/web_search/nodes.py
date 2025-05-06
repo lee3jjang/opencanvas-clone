@@ -1,12 +1,16 @@
-from typing import Literal
 import datetime
-from web_search.prompts import CLASSIFIER_PROMPT, QUERY_GENERATOR_PROMPT
-from web_search.state import SearchResult, WebSearchState
-from pydantic import BaseModel, Field
+from typing import Literal
+
 from langchain_anthropic.chat_models import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchResults
+from pydantic import BaseModel, Field
 
-from shared.utils import format_messages
+from zuzu_agent.agents.web_search.prompts import (
+    CLASSIFIER_PROMPT,
+    QUERY_GENERATOR_PROMPT,
+)
+from zuzu_agent.agents.web_search.state import SearchResult, WebSearchState
+from zuzu_agent.shared.utils import format_messages
 
 
 class ClassificationSchema(BaseModel):

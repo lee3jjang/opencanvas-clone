@@ -1,9 +1,10 @@
 from typing import cast
-from langgraph.graph import StateGraph, MessagesState
-from langchain_core.tools import tool
-from langchain.chat_models import init_chat_model
 
-from shared.utils import format_messages
+from langchain.chat_models import init_chat_model
+from langchain_core.tools import tool
+from langgraph.graph import MessagesState, StateGraph
+
+from zuzu_agent.shared.utils import format_messages
 
 TITLE_SYSTEM_PROMPT = """You are tasked with generating a concise, descriptive title for a conversation between a user and an AI assistant. The title should capture the main topic or purpose of the conversation.
 

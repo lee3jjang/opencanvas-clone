@@ -1,13 +1,12 @@
 from langgraph.graph import StateGraph
 
-from web_search.nodes import (
+from zuzu_agent.agents.web_search.nodes import (
     classify_message,
     query_generator,
     search,
     search_or_end_conditional,
 )
-from web_search.state import WebSearchState
-
+from zuzu_agent.agents.web_search.state import WebSearchState
 
 graph = (
     StateGraph(WebSearchState)
